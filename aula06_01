@@ -1,0 +1,26 @@
+#Considerando:
+#Atribui valor de i, k, save, para cada resgistrador $s3, $s5, $s6, respectivamente
+ $s3 = i #i é a representação do indice do vetor 
+ $s5 = k #k é a representação do valor de controle do loop
+ $s6 = save #save é a representação de vetor 
+
+#Abrindo o laço Loop
+Loop:
+
+#Alinha o valor, 'movendo' duas casa para a direita no numero de bytes 
+ sll $t0, $s3, 2
+
+#O valor atual do vetor é movida para o registrador $t0
+ add $t0, $t0, $s6
+
+#Carrega o valor inicial do vetor, no registrador $t1 
+ lw $t1, 0($t0)
+ 
+#Verifica se o valor contido em $t1 é igual ao valor contido no registrador $s5
+#Caso não seja igual ele pula para Sair
+#Caso seja igual ele executa o comando de adicionar 1 ao indice do vetor e retorna para o Loop
+ bne $t1, $s5, Sair
+ addi $s3, $s3, 1
+ J Loop
+
+Sair:
