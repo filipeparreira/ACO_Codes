@@ -6,15 +6,16 @@ main:
 li $t0, 100
 li $t1, 200
 
-sw $t0, 80($zero)
-sw $t1, 160($zero)
+sw $t0, 80($sp)
+sw $t1, 160($sp)
 
-lw $t2, 80($zero)
-lw $t3, 160($zero)
+lw $t2, 80($sp)
+lw $t3, 160($sp)
 
 li $v0, 1
 move $a0, $t2
 syscall
+
 li $v0, 1 
 move $a0, $t3
 syscall
