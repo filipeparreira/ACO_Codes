@@ -241,26 +241,19 @@ main:
 		li $t0, 0	#Armazena o valor do conteudo da String1
 		li $t1, 0	#Armazena o valor do conteudo da String2
 		
-		ValStr:
+		ValStr1:
 		lb $t2, 0($a0)
-		lb $t3, 0($a1)
-		
-		move $t0, $t2
-		move $t1, $t3
-		
-		sub $s0, $t0, $t1
-		
-		bne $s0, $zero, SairStrCmp
-		
+		add $t0, $t0, $t2
 		addi $a0, $a0, 1
+		bne $t2, 10, ValStr1
+		
+		ValStr2:
+		lb $t2, 0($a1)
+		add $t1, $t1, $t2
 		addi $a1, $a1, 1
+		bne $t2, 10, ValStr2
 		
-		bne $t2, 10, ValStr
-		bne $t3, 10, ValStr
-		
-		SairStrCmp:
-		
-		move $v0, $s0
+		sub $v0, $t0, $t1
 		jr $ra
 			
 	ImprimeStr:
